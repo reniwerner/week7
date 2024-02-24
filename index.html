@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Eternals by Power</title>
+</head>
+<body>
+  <h1>Find Eternals by Power</h1>
+  <h2>Ex: Super strength</h2>
+  <label for="powerInput">Enter a power:</label>
+  <input type="text" id="powerInput">
+  <button onclick="findEternals()">Search</button>
+  <div id="results"></div>
+
+  <script>
+    const eternals = [
+      {
+        name: "Ikaris",
+        powers: ["Super strength", "Flight", "Energy blasts"],
+        skills: ["Combat", "Leadership", "Combat strategy"]
+      },
+      {
+        name: "Sersi",
+        powers: ["Transmutation", "Telepathy", "Immortality"],
+        skills: ["Alchemy", "Artistry", "Social manipulation"]
+      },
+      {
+        name: "Thena",
+        powers: ["Super speed", "Enhanced reflexes", "Expert combatant"],
+        skills: ["Combat", "Tactical analysis", "Weapon mastery"]
+      },
+      {
+        name: "Gilgamesh",
+        powers: ["Superhuman durability", "Regeneration", "Enhanced senses"],
+        skills: ["Combat", "Cooking", "Poetry"]
+      },
+      {
+        name: "Ajak",
+        powers: ["Cosmic energy manipulation", "Healing", "Immortality"],
+        skills: ["Medicine", "Diplomacy", "Mysticism"]
+      }
+    ];
+
+    function findEternalByPower(power) {
+      return eternals.filter(eternal => eternal.powers.includes(power));
+    }
+
+    function findEternals() {
+      const powerInput = document.getElementById("powerInput").value;
+      const resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = "";
+      const charactersWithPower = findEternalByPower(powerInput);
+      if (charactersWithPower.length > 0) {
+        const resultList = document.createElement("ul");
+        charactersWithPower.forEach(character => {
+          const listItem = document.createElement("li");
+          listItem.textContent = character.name;
+          resultList.appendChild(listItem);
+        });
+        resultsDiv.appendChild(resultList);
+      } else {
+        resultsDiv.textContent = "No Eternals found with that power.";
+      }
+    }
+  </script>
+</body>
+</html>
